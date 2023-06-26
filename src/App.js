@@ -1,11 +1,12 @@
 import './App.css';
+import Navbar from "./components/Navbar";
 
-const App=()=> {
-  return (
-    <div className="App">
-      <h3>Personalverwaltungsanwendung</h3>
-    </div>
-  );
+const App = () => {
+    return (
+        <div className="App">
+            <Navbar/>
+        </div>
+    );
 }
 
 export default App;
