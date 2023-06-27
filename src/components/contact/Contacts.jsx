@@ -1,7 +1,8 @@
-import {CURRENTLINE, CYAN, ORANGE, PINK, PURPLE, RED} from "../../helpers/colors";
+import {CURRENTLINE, ORANGE, PINK} from "../../helpers/colors";
 import {Fragment} from "react";
+import Contact from "./Contact";
 
-const Contacts = () => {
+const Contacts = ({contacts}) => {
     return (
         <Fragment>
             <section className='container'>
@@ -20,51 +21,18 @@ const Contacts = () => {
             </section>
             <section className='container'>
                 <div className='row'>
-                    <div className='col-md-6'>
-                        <div style={{backgroundColor: CURRENTLINE}} className='card my-2'>
-                            <div className='card-body'>
-                                <div className='row align-items-center d-flex justify-content-around'>
-                                    <div className='col-md-4 col-sm-4'>
-                                        <img src='https://via.placeholder.com/200' alt=""
-                                             style={{border: `1px solid ${PURPLE}`}} className='img-fluid roundeds'/>
-                                    </div>
-                                    <div className='col-md-7 col-sm-7'>
-                                        <ul className='list-group'>
-                                            <li className='list-group-item list-group-item-dark'>
-                                                Vorname und Nachname : {" "}
-                                                <span className='fw-bold'>
-                                                    Meysam Sefidkar
-                                                </span>
-                                            </li>
-                                            <li className='list-group-item list-group-item-dark'>
-                                                Handynummer : {" "}
-                                                <span className='fw-bold'>
-                                                    09163060179
-                                                </span>
-                                            </li>
-                                            <li className='list-group-item list-group-item-dark'>
-                                                Email Adresse : {" "}
-                                                <span className='fw-bold'>
-                                                    kwpasefidkar@gmail.com
-                                                </span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className='col-md-1 col-sm-1 d-flex flex-column align-items-center'>
-                                        <button className='btn my-1' style={{backgroundColor: ORANGE}}>
-                                            <i className='fa fa-eye'/>
-                                        </button>
-                                        <button className='btn my-1' style={{backgroundColor: CYAN}}>
-                                            <i className='fa fa-pencil'/>
-                                        </button>
-                                        <button className='btn my-1' style={{backgroundColor: RED}}>
-                                            <i className='fa fa-trash'/>
-                                        </button>
-                                    </div>
-                                </div>
+                    {
+                        contacts.length > 0 ? contacts.map(c => (
+                            <Contact key={c.id} contact={c}/>
+                        )) : (
+                            <div className='text-center py-5' style={{backgroundColor: CURRENTLINE}}>
+                                <p className='h3' style={{color: ORANGE}}>
+                                    Kontakt nicht gefunden...
+                                </p>
+                                <img src={require('../../assets/no-found.gif')} alt='nicht gefunden' className='w-25'/>
                             </div>
-                        </div>
-                    </div>
+                        )
+                    }
                 </div>
             </section>
         </Fragment>
