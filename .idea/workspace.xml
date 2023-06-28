@@ -6,11 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="878b1533-4696-43a4-aaec-dea207711a20" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/contact/Contact.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contacts/Contact.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/contact/Contacts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contacts/Contacts.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/contact/SearchContact.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contacts/SearchContact.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +56,7 @@
       <workItem from="1687813676663" duration="4791000" />
       <workItem from="1687818646433" duration="8404000" />
       <workItem from="1687828700731" duration="46000" />
-      <workItem from="1687991677709" duration="740000" />
+      <workItem from="1687991677709" duration="2315000" />
     </task>
     <servers />
   </component>
