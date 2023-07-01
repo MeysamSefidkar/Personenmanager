@@ -7,6 +7,8 @@
     <list default="true" id="878b1533-4696-43a4-aaec-dea207711a20" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/contacts/AddContact.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contacts/AddContact.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/contacts/Contacts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contacts/Contacts.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +57,8 @@
       <workItem from="1687828700731" duration="46000" />
       <workItem from="1687991677709" duration="4331000" />
       <workItem from="1688069924461" duration="8190000" />
-      <workItem from="1688115159116" duration="2787000" />
+      <workItem from="1688115159116" duration="2875000" />
+      <workItem from="1688224831490" duration="2723000" />
     </task>
     <servers />
   </component>
