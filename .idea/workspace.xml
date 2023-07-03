@@ -8,7 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/db.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/contacts/AddContact.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contacts/AddContact.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/contacts/Contact.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contacts/Contact.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/contacts/ViewContact.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contacts/ViewContact.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +60,9 @@
       <workItem from="1688069924461" duration="8190000" />
       <workItem from="1688115159116" duration="2875000" />
       <workItem from="1688224831490" duration="2900000" />
-      <workItem from="1688239414853" duration="3401000" />
+      <workItem from="1688239414853" duration="3838000" />
+      <workItem from="1688369953111" duration="1581000" />
+      <workItem from="1688409502402" duration="2527000" />
     </task>
     <servers />
   </component>
