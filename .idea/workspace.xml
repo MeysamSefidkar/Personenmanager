@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="878b1533-4696-43a4-aaec-dea207711a20" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/db.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/contacts/Contact.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contacts/Contact.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/contacts/ViewContact.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contacts/ViewContact.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/contacts/EditContact.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contacts/EditContact.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +31,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/personenmanager&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -62,7 +61,9 @@
       <workItem from="1688224831490" duration="2900000" />
       <workItem from="1688239414853" duration="3838000" />
       <workItem from="1688369953111" duration="1581000" />
-      <workItem from="1688409502402" duration="2527000" />
+      <workItem from="1688409502402" duration="3983000" />
+      <workItem from="1688586591444" duration="225000" />
+      <workItem from="1688586828565" duration="3300000" />
     </task>
     <servers />
   </component>
