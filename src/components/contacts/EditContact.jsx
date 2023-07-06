@@ -1,17 +1,17 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
-import {Link, useNavigate, useParams} from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import {
     getContact,
     getAllGroups,
     updateContact,
 } from "../../services/contactService";
-import {Spinner} from "../";
-import {COMMENT, ORANGE, PURPLE} from "../../helpers/colors";
+import { Spinner } from "../";
+import { COMMENT, ORANGE, PURPLE } from "../../helpers/colors";
 
-const EditContact = () => {
-    const {contactId} = useParams();
+const EditContact = ({ forceRender, setForceRender }) => {
+    const { contactId } = useParams();
     const navigate = useNavigate();
 
     const [state, setState] = useState({
@@ -30,9 +30,9 @@ const EditContact = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                setState({...state, loading: true});
-                const {data: contactData} = await getContact(contactId);
-                const {data: groupsData} = await getAllGroups();
+                setState({ ...state, loading: true });
+                const { data: contactData } = await getContact(contactId);
+                const { data: groupsData } = await getAllGroups();
                 setState({
                     ...state,
                     loading: false,
@@ -41,7 +41,7 @@ const EditContact = () => {
                 });
             } catch (err) {
                 console.log(err);
-                setState({...state, loading: false});
+                setState({ ...state, loading: false });
             }
         };
 
@@ -61,39 +61,40 @@ const EditContact = () => {
     const submitForm = async (event) => {
         event.preventDefault();
         try {
-            setState({...state, loading: true});
-            const {data} = await updateContact(state.contact, contactId);
-            setState({...state, loading: false});
+            setState({ ...state, loading: true });
+            const { data } = await updateContact(state.contact, contactId);
+            setState({ ...state, loading: false });
             if (data) {
+                setForceRender(!forceRender);
                 navigate("/contacts");
             }
         } catch (err) {
             console.log(err);
-            setState({...state, loading: false});
+            setState({ ...state, loading: false });
         }
     };
 
-    const {loading, contact, groups} = state;
+    const { loading, contact, groups } = state;
 
     return (
         <>
             {loading ? (
-                <Spinner/>
+                <Spinner />
             ) : (
                 <>
                     <section className="p-3">
                         <div className="container">
                             <div className="row my-2">
                                 <div className="col text-center">
-                                    <p className="h4 fw-bold" style={{color: ORANGE}}>
+                                    <p className="h4 fw-bold" style={{ color: ORANGE }}>
                                         Zielgruppe bearbeiten
                                     </p>
                                 </div>
                             </div>
-                            <hr style={{backgroundColor: ORANGE}}/>
+                            <hr style={{ backgroundColor: ORANGE }} />
                             <div
                                 className="row p-2 w-75 mx-auto align-items-center"
-                                style={{backgroundColor: "#44475a", borderRadius: "1em"}}
+                                style={{ backgroundColor: "#44475a", borderRadius: "1em" }}
                             >
                                 <div className="col-md-8">
                                     <form onSubmit={submitForm}>
@@ -173,13 +174,13 @@ const EditContact = () => {
                                             <input
                                                 type="submit"
                                                 className="btn"
-                                                style={{backgroundColor: PURPLE}}
+                                                style={{ backgroundColor: PURPLE }}
                                                 value="Zielgruppe bearbeiten"
                                             />
                                             <Link
                                                 to={"/contacts"}
                                                 className="btn mx-2"
-                                                style={{backgroundColor: COMMENT}}
+                                                style={{ backgroundColor: COMMENT }}
                                             >
                                                 ablehnen
                                             </Link>
@@ -190,7 +191,7 @@ const EditContact = () => {
                                     <img
                                         src={contact.photo}
                                         className="img-fluid rounded"
-                                        style={{border: `1px solid ${PURPLE}`}}
+                                        style={{ border: `1px solid ${PURPLE}` }}
                                     />
                                 </div>
                             </div>
@@ -200,7 +201,7 @@ const EditContact = () => {
                             <img
                                 src={require("../../assets/man-taking-note.png")}
                                 height="300px"
-                                style={{opacity: "60%"}}
+                                style={{ opacity: "60%" }}
                             />
                         </div>
                     </section>
