@@ -11,8 +11,8 @@ const Contacts = ({ contacts, loading, confirmDelete }) => {
                 <div className='grid'>
                     <div className='row'>
                         <div className='col'>
-                            <p className='h3'>
-                                <Link to="/contacts/add" className='btn mx-2' style={{ backgroundColor: PINK }}>
+                            <p className='h3 float-start'>
+                                <Link to="/contacts/add" className='btn m-2' style={{ backgroundColor: PINK }}>
                                     Erstellen Sie eine neue Zielgruppe
                                     <i className='fa fa-plus-circle mx-2' />
                                 </Link>
