@@ -1,10 +1,14 @@
 import {Link} from "react-router-dom";
-
+import {useContext} from "react";
+import {ContactContext} from "../../context/contactContext";
 import {Spinner} from "../";
 import {COMMENT, GREEN, PURPLE} from "../../helpers/colors";
 import {Fragment} from "react";
 
-const AddContact = ({loading, contact, setContactInfo, groups, createContactForm}) => {
+const AddContact = () => {
+
+    const {loading, contact, onContactChange, groups, createContact} = useContext(ContactContext);
+
     return (
         <Fragment>
             {loading ? (
@@ -13,6 +17,7 @@ const AddContact = ({loading, contact, setContactInfo, groups, createContactForm
                 <Fragment>
                     <section className='p-3'>
                         <img src={require("../../assets/man-taking-note.png")}
+                             alt=''
                              height="400px" style={{
                             position: 'absolute', zIndex: "-1",
                             top: "130px", right: "100px", opacity: "50%",
@@ -29,34 +34,34 @@ const AddContact = ({loading, contact, setContactInfo, groups, createContactForm
                             <hr style={{backgroundColor: GREEN}}/>
                             <div className='row mt-5'>
                                 <div className='col-md-4'>
-                                    <form onSubmit={createContactForm}>
+                                    <form onSubmit={createContact}>
                                         <div className='mb-2'>
-                                            <input name='fullname' value={contact.fullname} onChange={setContactInfo}
+                                            <input name='fullname' value={contact.fullname} onChange={onContactChange}
                                                    type='text' className='form-control'
                                                    placeholder='Vorname und Nachname' required={true}/>
                                         </div>
                                         <div className='mb-2'>
-                                            <input name='photo' value={contact.photo} onChange={setContactInfo}
+                                            <input name='photo' value={contact.photo} onChange={onContactChange}
                                                    type='text' className='form-control' required={true}
                                                    placeholder='Fotoadresse'/>
                                         </div>
                                         <div className='mb-2'>
-                                            <input name='mobile' value={contact.mobile} onChange={setContactInfo}
+                                            <input name='mobile' value={contact.mobile} onChange={onContactChange}
                                                    type='number' className='form-control' required={true}
                                                    placeholder='Handynummer'/>
                                         </div>
                                         <div className='mb-2'>
-                                            <input name='email' value={contact.email} onChange={setContactInfo}
+                                            <input name='email' value={contact.email} onChange={onContactChange}
                                                    type='email' className='form-control' required={true}
                                                    placeholder='Email Adresse'/>
                                         </div>
                                         <div className='mb-2'>
-                                            <input name='job' value={contact.job} onChange={setContactInfo} type='text'
+                                            <input name='job' value={contact.job} onChange={onContactChange} type='text'
                                                    className='form-control' required={true}
                                                    placeholder='Arbeit'/>
                                         </div>
                                         <div className='mb-2'>
-                                            <select name='group' value={contact.group} onChange={setContactInfo}
+                                            <select name='group' value={contact.group} onChange={onContactChange}
                                                     required={true} className='form-control'>
                                                 <option value="">
                                                     Wähle die Gruppe
