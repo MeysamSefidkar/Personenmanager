@@ -5,17 +5,17 @@ export const ContactContext = createContext({
     setLoading: () => {
     },
     contact: {},
-    setContact: () => {
+    setContacts: () => {
+    },
+    filteredContacts: [],
+    setFilteredContacts: () => {
     },
     contacts: [],
-    filteredContacts: [],
     contactQuery: {},
     groups: [],
     onContactChange: () => {
     },
     deleteContact: () => {
-    },
-    updateContact: () => {
     },
     createContact: () => {
     },

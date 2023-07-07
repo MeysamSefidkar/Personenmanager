@@ -6,10 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="878b1533-4696-43a4-aaec-dea207711a20" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/db.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/contacts/AddContact.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contacts/AddContact.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/contacts/Contact.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contacts/Contact.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/contacts/Contacts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contacts/Contacts.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/contacts/EditContact.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contacts/EditContact.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/contacts/ViewContact.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contacts/ViewContact.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/contactContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/contactContext.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +68,8 @@
       <workItem from="1688409502402" duration="3983000" />
       <workItem from="1688586591444" duration="225000" />
       <workItem from="1688586828565" duration="3300000" />
+      <workItem from="1688690660092" duration="44000" />
+      <workItem from="1688742524018" duration="7109000" />
     </task>
     <servers />
   </component>

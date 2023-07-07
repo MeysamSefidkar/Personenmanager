@@ -1,100 +1,89 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState, useContext} from "react";
 
-import { Link, useNavigate, useParams } from "react-router-dom";
-
+import {Link, useNavigate, useParams} from "react-router-dom";
+import {ContactContext} from "../../context/contactContext";
 import {
     getContact,
-    getAllGroups,
     updateContact,
 } from "../../services/contactService";
-import { Spinner } from "../";
-import { COMMENT, ORANGE, PURPLE } from "../../helpers/colors";
+import {Spinner} from "../";
+import {COMMENT, ORANGE, PURPLE} from "../../helpers/colors";
 
-const EditContact = ({ forceRender, setForceRender }) => {
-    const { contactId } = useParams();
+const EditContact = () => {
+    const {contactId} = useParams();
+    const {contacts, setContacts, loading, setLoading, groups, setFilteredContacts} = useContext(ContactContext);
+
     const navigate = useNavigate();
 
-    const [state, setState] = useState({
-        loading: false,
-        contact: {
-            fullname: "",
-            photo: "",
-            mobile: "",
-            email: "",
-            job: "",
-            group: "",
-        },
-        groups: [],
-    });
+    const [contact, setContact] = useState({});
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                setState({ ...state, loading: true });
-                const { data: contactData } = await getContact(contactId);
-                const { data: groupsData } = await getAllGroups();
-                setState({
-                    ...state,
-                    loading: false,
-                    contact: contactData,
-                    groups: groupsData,
-                });
+                setLoading(true);
+
+                const {data: contactData} = await getContact(contactId);
+
+                setLoading(false);
+                setContact(contactData);
             } catch (err) {
                 console.log(err);
-                setState({ ...state, loading: false });
+                setLoading(false);
             }
         };
-
         fetchData();
     }, []);
 
-    const setContactInfo = (event) => {
-        setState({
-            ...state,
-            contact: {
-                ...state.contact,
-                [event.target.name]: [event.target.value],
-            },
+    const onContactChange = (event) => {
+        setContact({
+            ...contact,
+            [event.target.name]: event.target.value,
         });
     };
 
     const submitForm = async (event) => {
         event.preventDefault();
         try {
-            setState({ ...state, loading: true });
-            const { data } = await updateContact(state.contact, contactId);
-            setState({ ...state, loading: false });
-            if (data) {
-                setForceRender(!forceRender);
+            setLoading(true);
+            const {data, status} = await updateContact(contact, contactId);
+
+            if (status === 200) {
+                setLoading(false);
+
+                const allContacts = [...contacts];
+                const contactIndex = allContacts.findIndex(c => c.id === parseInt(contactId));
+                allContacts[contactIndex] = {...data};
+                setContacts(allContacts);
+                setFilteredContacts(allContacts);
+
                 navigate("/contacts");
             }
         } catch (err) {
             console.log(err);
-            setState({ ...state, loading: false });
+            setLoading(false);
         }
     };
 
-    const { loading, contact, groups } = state;
 
     return (
         <>
             {loading ? (
-                <Spinner />
+                <Spinner/>
             ) : (
                 <>
                     <section className="p-3">
                         <div className="container">
                             <div className="row my-2">
                                 <div className="col text-center">
-                                    <p className="h4 fw-bold" style={{ color: ORANGE }}>
+                                    <p className="h4 fw-bold" style={{color: ORANGE}}>
                                         Zielgruppe bearbeiten
                                     </p>
                                 </div>
                             </div>
-                            <hr style={{ backgroundColor: ORANGE }} />
+                            <hr style={{backgroundColor: ORANGE}}/>
                             <div
                                 className="row p-2 w-75 mx-auto align-items-center"
-                                style={{ backgroundColor: "#44475a", borderRadius: "1em" }}
+                                style={{backgroundColor: "#44475a", borderRadius: "1em"}}
                             >
                                 <div className="col-md-8">
                                     <form onSubmit={submitForm}>
@@ -104,7 +93,7 @@ const EditContact = ({ forceRender, setForceRender }) => {
                                                 type="text"
                                                 className="form-control"
                                                 value={contact.fullname}
-                                                onChange={setContactInfo}
+                                                onChange={onContactChange}
                                                 required={true}
                                                 placeholder="Vorname und Nachname"
                                             />
@@ -114,7 +103,7 @@ const EditContact = ({ forceRender, setForceRender }) => {
                                                 name="photo"
                                                 type="text"
                                                 value={contact.photo}
-                                                onChange={setContactInfo}
+                                                onChange={onContactChange}
                                                 className="form-control"
                                                 required={true}
                                                 placeholder="Fotoadresse"
@@ -126,7 +115,7 @@ const EditContact = ({ forceRender, setForceRender }) => {
                                                 type="number"
                                                 className="form-control"
                                                 value={contact.mobile}
-                                                onChange={setContactInfo}
+                                                onChange={onContactChange}
                                                 required={true}
                                                 placeholder="Handynummer"
                                             />
@@ -137,7 +126,7 @@ const EditContact = ({ forceRender, setForceRender }) => {
                                                 type="email"
                                                 className="form-control"
                                                 value={contact.email}
-                                                onChange={setContactInfo}
+                                                onChange={onContactChange}
                                                 required={true}
                                                 placeholder="Email Adresse"
                                             />
@@ -148,7 +137,7 @@ const EditContact = ({ forceRender, setForceRender }) => {
                                                 type="text"
                                                 className="form-control"
                                                 value={contact.job}
-                                                onChange={setContactInfo}
+                                                onChange={onContactChange}
                                                 required={true}
                                                 placeholder="Arbeit"
                                             />
@@ -157,7 +146,7 @@ const EditContact = ({ forceRender, setForceRender }) => {
                                             <select
                                                 name="group"
                                                 value={contact.group}
-                                                onChange={setContactInfo}
+                                                onChange={onContactChange}
                                                 required={true}
                                                 className="form-control"
                                             >
@@ -174,13 +163,13 @@ const EditContact = ({ forceRender, setForceRender }) => {
                                             <input
                                                 type="submit"
                                                 className="btn"
-                                                style={{ backgroundColor: PURPLE }}
+                                                style={{backgroundColor: PURPLE}}
                                                 value="Zielgruppe bearbeiten"
                                             />
                                             <Link
                                                 to={"/contacts"}
                                                 className="btn mx-2"
-                                                style={{ backgroundColor: COMMENT }}
+                                                style={{backgroundColor: COMMENT}}
                                             >
                                                 ablehnen
                                             </Link>
@@ -191,7 +180,7 @@ const EditContact = ({ forceRender, setForceRender }) => {
                                     <img
                                         src={contact.photo}
                                         className="img-fluid rounded"
-                                        style={{ border: `1px solid ${PURPLE}` }}
+                                        style={{border: `1px solid ${PURPLE}`}}
                                     />
                                 </div>
                             </div>
@@ -201,7 +190,7 @@ const EditContact = ({ forceRender, setForceRender }) => {
                             <img
                                 src={require("../../assets/man-taking-note.png")}
                                 height="300px"
-                                style={{ opacity: "60%" }}
+                                style={{opacity: "60%"}}
                             />
                         </div>
                     </section>
