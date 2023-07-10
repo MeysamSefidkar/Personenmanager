@@ -3,6 +3,7 @@ import {Routes, Route, Navigate, useNavigate} from "react-router-dom";
 import {confirmAlert} from "react-confirm-alert";
 import {ContactContext} from "./context/contactContext";
 
+import _ from "lodash";
 
 import {
     AddContact,
@@ -147,22 +148,17 @@ const App = () => {
         }
     };
 
-    let filterTimeout;
-
-    const contactSearch = (query) => {
-        clearTimeout(filterTimeout);
+    const contactSearch = _.debounce(query => {
 
         if (!query) return setFilteredContacts([...contacts]);
 
-        filterTimeout = setTimeout(() => {
-            setFilteredContacts(contacts.filter((contact) => {
-                    return contact.fullname
-                        .toLowerCase()
-                        .includes(query.toLowerCase());
-                })
-            );
-        }, 1000)
-    };
+        setFilteredContacts(contacts.filter((contact) => {
+                return contact.fullname
+                    .toLowerCase()
+                    .includes(query.toLowerCase());
+            })
+        );
+    }, 1000);
 
     return (
         <ContactContext.Provider value={{
