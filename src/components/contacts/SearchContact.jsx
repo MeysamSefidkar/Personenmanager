@@ -4,7 +4,7 @@ import {ContactContext} from "../../context/contactContext";
 
 const SearchContact = () => {
 
-    const {contactQuery, contactSearch} = useContext(ContactContext);
+    const {contactSearch} = useContext(ContactContext);
 
     return (
         <div className='input-group mx-2 w-75'>
@@ -12,8 +12,7 @@ const SearchContact = () => {
                 <i className='fa fa-search'/>
             </span>
             <input type='text'
-                   value={contactQuery.text}
-                   onChange={contactSearch}
+                   onChange={event => contactSearch(event.target.value)}
                    className='form-control' placeholder='Zielgruppensuche' aria-label='Search'
                    aria-describedby='basic-addon1'/>
         </div>
