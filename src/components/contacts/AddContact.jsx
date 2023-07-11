@@ -4,10 +4,26 @@ import {ContactContext} from "../../context/contactContext";
 import {Spinner} from "../";
 import {COMMENT, GREEN, PURPLE} from "../../helpers/colors";
 import {Fragment} from "react";
+import {useFormik} from 'formik';
+import {contactSchema} from "../../validations/contactValidation";
 
 const AddContact = () => {
 
-    const {loading, contact, onContactChange, groups, createContact} = useContext(ContactContext);
+    const {loading, groups, createContact} = useContext(ContactContext);
+    const formik = useFormik({
+        initialValues: {
+            fullname: '',
+            photo: '',
+            mobile: '',
+            email: '',
+            job: '',
+            group: '',
+        },
+        validationSchema: contactSchema,
+        onSubmit: (values) => {
+            createContact(values);
+        }
+    });
 
     return (
         <Fragment>
@@ -34,35 +50,63 @@ const AddContact = () => {
                             <hr style={{backgroundColor: GREEN}}/>
                             <div className='row mt-5'>
                                 <div className='col-md-4'>
-                                    <form onSubmit={createContact}>
+                                    <form onSubmit={formik.handleSubmit}>
                                         <div className='mb-2'>
-                                            <input name='fullname' value={contact.fullname} onChange={onContactChange}
+                                            <input name='fullname' id='fullname' value={formik.values.fullname}
+                                                   onChange={formik.handleChange}
+                                                   onBlur={formik.handleBlur}
                                                    type='text' className='form-control'
-                                                   placeholder='Vorname und Nachname' required={true}/>
+                                                   placeholder='Vorname und Nachname'/>
+                                            {formik.touched.fullname && formik.errors.fullname ? (
+                                                <div className='text-danger'>{formik.errors.fullname}</div>
+                                            ) : null}
                                         </div>
                                         <div className='mb-2'>
-                                            <input name='photo' value={contact.photo} onChange={onContactChange}
-                                                   type='text' className='form-control' required={true}
+                                            <input name='photo' id='photo' value={formik.values.photo}
+                                                   onChange={formik.handleChange}
+                                                   onBlur={formik.handleBlur}
+                                                   type='text' className='form-control'
                                                    placeholder='Fotoadresse'/>
+                                            {formik.touched.photo && formik.errors.photo ? (
+                                                <div className='text-danger'>{formik.errors.photo}</div>
+                                            ) : null}
                                         </div>
                                         <div className='mb-2'>
-                                            <input name='mobile' value={contact.mobile} onChange={onContactChange}
-                                                   type='number' className='form-control' required={true}
+                                            <input name='mobile' id='mobile' value={formik.values.mobile}
+                                                   onChange={formik.handleChange}
+                                                   onBlur={formik.handleBlur}
+                                                   type='number' className='form-control'
                                                    placeholder='Handynummer'/>
+                                            {formik.touched.mobile && formik.errors.mobile ? (
+                                                <div className='text-danger'>{formik.errors.mobile}</div>
+                                            ) : null}
                                         </div>
                                         <div className='mb-2'>
-                                            <input name='email' value={contact.email} onChange={onContactChange}
-                                                   type='email' className='form-control' required={true}
+                                            <input name='email' id='email' value={formik.values.email}
+                                                   onChange={formik.handleChange}
+                                                   onBlur={formik.handleBlur}
+                                                   type='email' className='form-control'
                                                    placeholder='Email Adresse'/>
+                                            {formik.touched.email && formik.errors.email ? (
+                                                <div className='text-danger'>{formik.errors.email}</div>
+                                            ) : null}
                                         </div>
                                         <div className='mb-2'>
-                                            <input name='job' value={contact.job} onChange={onContactChange} type='text'
-                                                   className='form-control' required={true}
+                                            <input name='job' id='job' value={formik.values.job}
+                                                   onChange={formik.handleChange}
+                                                   onBlur={formik.handleBlur}
+                                                   type='text'
+                                                   className='form-control'
                                                    placeholder='Arbeit'/>
+                                            {formik.touched.job && formik.errors.job ? (
+                                                <div className='text-danger'>{formik.errors.job}</div>
+                                            ) : null}
                                         </div>
                                         <div className='mb-2'>
-                                            <select name='group' value={contact.group} onChange={onContactChange}
-                                                    required={true} className='form-control'>
+                                            <select name='group' id='group' value={formik.values.group}
+                                                    onChange={formik.handleChange}
+                                                    onBlur={formik.handleBlur}
+                                                    className='form-control'>
                                                 <option value="">
                                                     Wähle die Gruppe
                                                 </option>
@@ -70,6 +114,9 @@ const AddContact = () => {
                                                     <option key={group.id} value={group.id}>{group.name}</option>
                                                 ))}
                                             </select>
+                                            {formik.touched.group && formik.errors.group ? (
+                                                <div className='text-danger'>{formik.errors.group}</div>
+                                            ) : null}
                                         </div>
                                         <div className='mx-2'>
                                             <input type='submit' className='btn' style={{backgroundColor: PURPLE}}

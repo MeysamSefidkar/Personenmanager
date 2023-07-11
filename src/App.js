@@ -58,18 +58,17 @@ const App = () => {
         fetchData();
     }, []);
 
-    const createContactForm = async (event) => {
-        event.preventDefault();
+    const createContactForm = async (values) => {
+
         try {
             setLoading((prevLoading) => !prevLoading);
-            const {status, data} = await createContact(contact);
+            const {status, data} = await createContact(values);
             if (status === 201) {
                 const allContacts = [...contacts, data];
 
                 setContacts(allContacts);
                 setFilteredContacts(allContacts);
 
-                setContact({});
                 setLoading((prevLoading) => !prevLoading);
                 navigate("/contacts");
             }

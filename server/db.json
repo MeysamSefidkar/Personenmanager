@@ -1,15 +1,5 @@
 {
-  "contacts": [
-    {
-      "fullname": "Meysam Sefidkar",
-      "photo": "https://lh3.googleusercontent.com/pw/AJFCJaXlw461cGyiZV-YUEpOyXeYd78QifOpKi_y3ykuJ3A97EwJnOk5_SysWIT2kGslGxRKH6Nx11q8IAHE7UPKDptcmCOWwyD1AeUaBwuSSfU_XXd-g8w-Ol9E5tiZYFW1_b3RoCQPJL2NwKNbk6c74Sh-HkKkgWcIbgpAmtchOppVZgc97WMKRTMM2sPY1-Sht46Q2dF1r35w8R7MUeaOGRUqXeSCAx-jf7L6qPBseZSPTCDiCQM0irDs5elQr2-mXOSf4TweYG2VMHU2R5QsMOHvDPSCCof6wHT-kP1u8_Fap_Ox-szNck4c_5rDR3w6qwqIifNXwYoAilGCV9mmoM_DumIY3xGLrGGyPmwnrr6pdjGwph6nOaJgusjifXwDWOEOLDO0mfDqDYWp0h-D9QDSVJdiI24QCKR0HqL2yQ64NSwfmbk-gwqesC5xzy0bCY8OmzFJu2Aw0zMVvxVXR-lF6SehG2FWZ41Y_odpRqaINJEH8xs8QxxQJiiJ2cqPbY14cLgZBa-Dqk_g057x95hfg9QEcTOpt2P-GS9tJLRSCZpoIFpxOTB7_sLB20aFGPTiyNOWjM38n28UByUI7dCTPtg314cpH2sjqHrpNO9w3SCYjxjol-xDH8GdJ4XuqBsCMt3CEbgJC0MAT2Dfs5H_szZiL35evl99DrAbSnhXZSEdbBB9Q-N3ofcKCdup9SgsQMzXFp20gAFWy__ZrjkxoQYBhnL0AgPQE4gQwqqUaRG8_-dNNCl69I8IptsV0RDFiwGtNunkKN5rWo09Zga-f4MdDlv13otVpu1dlW-B-hpMB-WdL4XbpnmNmjg_AaqqULWKwe9hcOHxLFj6VOlceC3oCluGkTJxlUJAjxyI0sgg91uOiJLWAkkcZixouLZJAqghyxDyctne5m02lRP5Rw=w1225-h919-s-no?authuser=0",
-      "mobile": "09163060033",
-      "email": "kwpasefidkar@gmail.com",
-      "job": "Front-End-Entwickler",
-      "group": "1",
-      "id": 1
-    }
-  ],
+  "contacts": [],
   "groups": [
     {
       "id": "1",
