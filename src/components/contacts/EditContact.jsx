@@ -8,6 +8,8 @@ import {
 } from "../../services/contactService";
 import {Spinner} from "../";
 import {COMMENT, ORANGE, PURPLE} from "../../helpers/colors";
+import {contactSchema} from "../../validations/contactValidation";
+import {ErrorMessage, Field, Form, Formik} from "formik";
 
 const EditContact = () => {
     const {contactId} = useParams();
@@ -34,18 +36,10 @@ const EditContact = () => {
         fetchData();
     }, []);
 
-    const onContactChange = (event) => {
-        setContact({
-            ...contact,
-            [event.target.name]: event.target.value,
-        });
-    };
-
-    const submitForm = async (event) => {
-        event.preventDefault();
+    const submitForm = async (valeus) => {
         try {
             setLoading(true);
-            const {data, status} = await updateContact(contact, contactId);
+            const {data, status} = await updateContact(valeus, contactId);
 
             if (status === 200) {
                 setLoading(false);
@@ -86,95 +80,93 @@ const EditContact = () => {
                                 style={{backgroundColor: "#44475a", borderRadius: "1em"}}
                             >
                                 <div className="col-md-8">
-                                    <form onSubmit={submitForm}>
-                                        <div className="mb-2">
-                                            <input
-                                                name="fullname"
-                                                type="text"
-                                                className="form-control"
-                                                value={contact.fullname}
-                                                onChange={onContactChange}
-                                                required={true}
-                                                placeholder="Vorname und Nachname"
-                                            />
-                                        </div>
-                                        <div className="mb-2">
-                                            <input
-                                                name="photo"
-                                                type="text"
-                                                value={contact.photo}
-                                                onChange={onContactChange}
-                                                className="form-control"
-                                                required={true}
-                                                placeholder="Fotoadresse"
-                                            />
-                                        </div>
-                                        <div className="mb-2">
-                                            <input
-                                                name="mobile"
-                                                type="number"
-                                                className="form-control"
-                                                value={contact.mobile}
-                                                onChange={onContactChange}
-                                                required={true}
-                                                placeholder="Handynummer"
-                                            />
-                                        </div>
-                                        <div className="mb-2">
-                                            <input
-                                                name="email"
-                                                type="email"
-                                                className="form-control"
-                                                value={contact.email}
-                                                onChange={onContactChange}
-                                                required={true}
-                                                placeholder="Email Adresse"
-                                            />
-                                        </div>
-                                        <div className="mb-2">
-                                            <input
-                                                name="job"
-                                                type="text"
-                                                className="form-control"
-                                                value={contact.job}
-                                                onChange={onContactChange}
-                                                required={true}
-                                                placeholder="Arbeit"
-                                            />
-                                        </div>
-                                        <div className="mb-2">
-                                            <select
-                                                name="group"
-                                                value={contact.group}
-                                                onChange={onContactChange}
-                                                required={true}
-                                                className="form-control"
-                                            >
-                                                <option value="">Wähle die Gruppe</option>
-                                                {groups.length > 0 &&
-                                                    groups.map((group) => (
-                                                        <option key={group.id} value={group.id}>
-                                                            {group.name}
-                                                        </option>
+                                    <Formik
+                                        initialValues={contact}
+                                        validationSchema={contactSchema}
+                                        onSubmit={(values) => {
+                                            submitForm(values);
+                                        }}>
+                                        <Form>
+                                            <div className='mb-2'>
+                                                <Field name='fullname'
+                                                       type='text' className='form-control'
+                                                       placeholder='Vorname und Nachname'/>
+                                                <ErrorMessage name='fullname' render={
+                                                    (msg) => (
+                                                        <div className='text-danger'>{msg}</div>
+                                                    )
+                                                }/>
+                                            </div>
+                                            <div className='mb-2'>
+                                                <Field name='photo'
+                                                       type='text' className='form-control'
+                                                       placeholder='Fotoadresse'/>
+                                                <ErrorMessage name='photo' render={
+                                                    (msg) => (
+                                                        <div className='text-danger'>{msg}</div>
+                                                    )
+                                                }/>
+                                            </div>
+                                            <div className='mb-2'>
+                                                <Field name='mobile'
+                                                       type='number' className='form-control'
+                                                       placeholder='Handynummer'/>
+                                                <ErrorMessage name='mobile' render={
+                                                    (msg) => (
+                                                        <div className='text-danger'>{msg}</div>
+                                                    )
+                                                }/>
+                                            </div>
+                                            <div className='mb-2'>
+                                                <Field name='email'
+                                                       type='email' className='form-control'
+                                                       placeholder='Email Adresse'/>
+                                                <ErrorMessage name='email' render={
+                                                    (msg) => (
+                                                        <div className='text-danger'>{msg}</div>
+                                                    )
+                                                }/>
+                                            </div>
+                                            <div className='mb-2'>
+                                                <Field name='job'
+                                                       type='text'
+                                                       className='form-control'
+                                                       placeholder='Arbeit'/>
+                                                <ErrorMessage name='job' render={
+                                                    (msg) => (
+                                                        <div className='text-danger'>{msg}</div>
+                                                    )
+                                                }/>
+                                            </div>
+                                            <div className='mb-2'>
+                                                <Field name='group'
+                                                       as='select'
+                                                       className='form-control'>
+                                                    <option value="">
+                                                        Wähle die Gruppe
+                                                    </option>
+                                                    {groups.length > 0 && groups.map((group) => (
+                                                        <option key={group.id}
+                                                                value={group.id}>{group.name}</option>
                                                     ))}
-                                            </select>
-                                        </div>
-                                        <div className="mb-2">
-                                            <input
-                                                type="submit"
-                                                className="btn"
-                                                style={{backgroundColor: PURPLE}}
-                                                value="Zielgruppe bearbeiten"
-                                            />
-                                            <Link
-                                                to={"/contacts"}
-                                                className="btn mx-2"
-                                                style={{backgroundColor: COMMENT}}
-                                            >
-                                                ablehnen
-                                            </Link>
-                                        </div>
-                                    </form>
+                                                </Field>
+                                                <ErrorMessage name='group' render={
+                                                    (msg) => (
+                                                        <div className='text-danger'>{msg}</div>
+                                                    )
+                                                }/>
+                                            </div>
+                                            <div className='mx-2'>
+                                                <input type='submit' className='btn'
+                                                       style={{backgroundColor: PURPLE}}
+                                                       value='Zielgruppe bearbeiten'/>
+                                                <Link to={"/contacts"} className='btn mx-2'
+                                                      style={{backgroundColor: COMMENT}}>
+                                                    ablehnen
+                                                </Link>
+                                            </div>
+                                        </Form>
+                                    </Formik>
                                 </div>
                                 <div className="col-md-4">
                                     <img
