@@ -1,6 +1,8 @@
 import "./App.css";
 import {Routes, Route, Navigate, useNavigate} from "react-router-dom";
 import {confirmAlert} from "react-confirm-alert";
+import {useImmer} from "use-immer";
+import {ToastContainer, toast} from "react-toastify";
 import {ContactContext} from "./context/contactContext";
 
 import _ from "lodash";
@@ -12,7 +14,7 @@ import {
     Navbar,
     ViewContact,
 } from "./components";
-import {useState, useEffect} from "react";
+import {useEffect} from "react";
 
 import {
     createContact,
@@ -29,11 +31,10 @@ import {
 } from "./helpers/colors";
 
 const App = () => {
-    const [loading, setLoading] = useState(false);
-    const [contacts, setContacts] = useState([]);
-    const [filteredContacts, setFilteredContacts] = useState([]);
-    const [groups, setGroups] = useState([]);
-    const [contact, setContact] = useState({});
+    const [loading, setLoading] = useImmer(false);
+    const [contacts, setContacts] = useImmer([]);
+    const [filteredContacts, setFilteredContacts] = useImmer([]);
+    const [groups, setGroups] = useImmer([]);
 
     const navigate = useNavigate();
 
@@ -61,13 +62,18 @@ const App = () => {
     const createContactForm = async (values) => {
 
         try {
-            setLoading((prevLoading) => !prevLoading);
+            setLoading(draft => !draft);
             const {status, data} = await createContact(values);
             if (status === 201) {
-                const allContacts = [...contacts, data];
+                toast.success('Der Kontakt wurde erfolgreich erstellt.');
 
-                setContacts(allContacts);
-                setFilteredContacts(allContacts);
+                setContacts(draft => {
+                    draft.push(data);
+                })
+
+                setFilteredContacts(draft => {
+                    draft.push(data);
+                })
 
                 setLoading((prevLoading) => !prevLoading);
                 navigate("/contacts");
@@ -76,13 +82,6 @@ const App = () => {
             console.log(err.message);
             setLoading((prevLoading) => !prevLoading);
         }
-    };
-
-    const onContactChange = (event) => {
-        setContact({
-            ...contact,
-            [event.target.name]: event.target.value,
-        });
     };
 
     const confirmDelete = (contactId, contactFullname) => {
@@ -127,23 +126,23 @@ const App = () => {
 
     const removeContact = async (contactId) => {
 
-        const allContacts = [...contacts];
+        const contactsBackup = [...contacts];
 
         try {
-            const updatedContact = contacts.filter(c => c.id !== contactId);
-            setContacts(updatedContact);
-            setFilteredContacts(updatedContact);
+            setContacts((draft) => contacts.filter((c) => c.id !== contactId));
+            setFilteredContacts((draft) => contacts.filter((c) => c.id !== contactId))
 
             const {status} = await deleteContact(contactId);
+            toast.error('Kontakt erfolgreich gelöscht.')
 
             if (status !== 200) {
-                setContacts(allContacts);
-                setFilteredContacts(allContacts);
+                setContacts(contactsBackup);
+                setFilteredContacts(contactsBackup);
             }
         } catch (err) {
             console.log(err.message);
-            setContacts(allContacts);
-            setFilteredContacts(allContacts);
+            setContacts(contactsBackup);
+            setFilteredContacts(contactsBackup);
         }
     };
 
@@ -151,30 +150,24 @@ const App = () => {
 
         if (!query) return setFilteredContacts([...contacts]);
 
-        setFilteredContacts(contacts.filter((contact) => {
-                return contact.fullname
-                    .toLowerCase()
-                    .includes(query.toLowerCase());
-            })
-        );
+        setFilteredContacts(draft => draft.filter(c => c.fullname.toLowerCase().includes(query.toLowerCase())))
     }, 1000);
 
     return (
         <ContactContext.Provider value={{
             loading,
             setLoading,
-            contact,
             setContacts,
             filteredContacts,
             setFilteredContacts,
             contacts,
             groups,
-            onContactChange,
             deleteContact: confirmDelete,
             createContact: createContactForm,
             contactSearch,
         }}>
             <div className="App">
+                <ToastContainer theme='colored'/>
                 <Navbar/>
                 <Routes>
                     <Route path="/" element={<Navigate to="/contacts"/>}/>

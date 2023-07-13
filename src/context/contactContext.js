@@ -4,7 +4,6 @@ export const ContactContext = createContext({
     loading: false,
     setLoading: () => {
     },
-    contact: {},
     setContacts: () => {
     },
     filteredContacts: [],
@@ -12,8 +11,6 @@ export const ContactContext = createContext({
     },
     contacts: [],
     groups: [],
-    onContactChange: () => {
-    },
     deleteContact: () => {
     },
     createContact: () => {

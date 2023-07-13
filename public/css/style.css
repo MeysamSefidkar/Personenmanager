@@ -2,11 +2,14 @@
     font-family: 'Kavivanar';
     src: url('../fonts/Kavivanar-Regular.eot');
     src: url('../fonts/Kavivanar-Regular.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/Kavivanar-Regular.woff2') format('woff2'),
-        url('../fonts/Kavivanar-Regular.woff') format('woff'),
-        url('../fonts/Kavivanar-Regular.ttf') format('truetype');
+    url('../fonts/Kavivanar-Regular.woff2') format('woff2'),
+    url('../fonts/Kavivanar-Regular.woff') format('woff'),
+    url('../fonts/Kavivanar-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 
+.Toastify__toast-body {
+    font-family: 'Kavivanar', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}

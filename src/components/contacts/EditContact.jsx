@@ -1,5 +1,6 @@
-import {useEffect, useState, useContext} from "react";
-
+import {useEffect, useContext} from "react";
+import {useImmer} from "use-immer";
+import {toast} from "react-toastify";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {ContactContext} from "../../context/contactContext";
 import {
@@ -13,11 +14,11 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 
 const EditContact = () => {
     const {contactId} = useParams();
-    const {contacts, setContacts, loading, setLoading, groups, setFilteredContacts} = useContext(ContactContext);
+    const {setContacts, loading, setLoading, groups, setFilteredContacts} = useContext(ContactContext);
 
     const navigate = useNavigate();
 
-    const [contact, setContact] = useState({});
+    const [contact, setContact] = useImmer({});
 
     useEffect(() => {
         const fetchData = async () => {
@@ -36,19 +37,23 @@ const EditContact = () => {
         fetchData();
     }, []);
 
-    const submitForm = async (valeus) => {
+    const submitForm = async (values) => {
         try {
             setLoading(true);
-            const {data, status} = await updateContact(valeus, contactId);
+            const {data, status} = await updateContact(values, contactId);
 
             if (status === 200) {
                 setLoading(false);
+                toast.info('Kontakt erfolgreich bearbeitet.');
 
-                const allContacts = [...contacts];
-                const contactIndex = allContacts.findIndex(c => c.id === parseInt(contactId));
-                allContacts[contactIndex] = {...data};
-                setContacts(allContacts);
-                setFilteredContacts(allContacts);
+                setContacts(draft => {
+                    const contactIndex = draft.findIndex(c => c.id === parseInt(contactId));
+                    draft[contactIndex] = {...data};
+                });
+                setFilteredContacts(draft => {
+                    const contactIndex = draft.findIndex(c => c.id === parseInt(contactId));
+                    draft[contactIndex] = {...data};
+                });
 
                 navigate("/contacts");
             }
@@ -57,7 +62,6 @@ const EditContact = () => {
             setLoading(false);
         }
     };
-
 
     return (
         <>

@@ -6,9 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="878b1533-4696-43a4-aaec-dea207711a20" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/db.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/contacts/AddContact.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contacts/AddContact.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/contacts/EditContact.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contacts/EditContact.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/contactContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/contactContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +72,7 @@
       <workItem from="1688690660092" duration="44000" />
       <workItem from="1688742524018" duration="7314000" />
       <workItem from="1689020940898" duration="3435000" />
-      <workItem from="1689195053680" duration="4455000" />
+      <workItem from="1689195053680" duration="10588000" />
     </task>
     <servers />
   </component>
